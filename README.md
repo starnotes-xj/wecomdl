@@ -1,10 +1,23 @@
-# wecom-replay-downloader
+# wecomdl
 
-企业微信直播回放下载辅助工具。
+企业微信直播回放下载辅助工具，提供现代化 Windows 图形界面，同时保留命令行模式。
 
 本工具只用于下载你已经有权限观看的企业微信直播回放，不绕过登录、访问控制或 DRM。
 
-## 优先级
+## 推荐使用：图形化界面
+
+下载 GitHub Actions 产物里的 `wecomdl-gui.exe` 后直接运行。
+
+界面支持：
+
+- 粘贴 MP4 / m3u8 直链下载
+- 选择 TS 分片列表文件兜底合并
+- 设置输出目录、输出名称、Referer、User-Agent
+- 自动检测或安装 ffmpeg
+- 实时状态、进度和事件日志
+- 完成后打开输出文件
+
+## 链接优先级
 
 抓包后优先找以下地址：
 
@@ -29,7 +42,7 @@
 
 其中 `trans_video_url` 通常就是最方便的完整 MP4。
 
-## 使用方式
+## 命令行模式
 
 ### 下载 MP4
 
@@ -68,7 +81,7 @@ wecomdl --ts-list ts.txt --out D:\Videos --name "课程回放-ts"
 
 注意：TS 分片必须属于同一个视频、同一个清晰度、同一组文件，不要混入广告分片或其他清晰度分片。
 
-## 常用参数
+## 常用 CLI 参数
 
 ```text
 --url          MP4 或 m3u8 地址
@@ -104,7 +117,7 @@ video_url
 https://1253731777.vod2.myqcloud.com/d9c271dcvodtranssh1253731777/.../v.f62951.mp4
 ```
 
-直接复制给 `--url`。
+直接复制到 GUI 的“MP4 / m3u8”输入框，或命令行 `--url`。
 
 如果看到：
 
@@ -112,9 +125,30 @@ https://1253731777.vod2.myqcloud.com/d9c271dcvodtranssh1253731777/.../v.f62951.m
 https://1253731777.vod2.myqcloud.com/.../playlist_eof.m3u8
 ```
 
-也直接复制给 `--url`。
+也直接作为 URL 使用。
 
 不建议为了收集 TS 分片而完整播放一遍视频。TS 合并只是兜底方案，优先使用 MP4 或 m3u8。
+
+## 本地开发
+
+```bash
+go test ./...
+npm install --prefix frontend
+npm run build --prefix frontend
+wails build -platform windows/amd64 -nopackage
+```
+
+GUI 输出位于：
+
+```text
+build/bin/wecomdl-gui.exe
+```
+
+CLI 构建：
+
+```bash
+go build -o dist/wecomdl.exe ./cmd/wecomdl
+```
 
 ## ffmpeg
 
