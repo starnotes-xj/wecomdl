@@ -16,9 +16,11 @@ var assets embed.FS
 func main() {
 	backend := gui.NewBackend()
 	err := wails.Run(&options.App{
-		Title:  "wecomdl",
-		Width:  1180,
-		Height: 760,
+		Title:     "wecomdl",
+		Width:     1180,
+		Height:    760,
+		MinWidth:  720,
+		MinHeight: 560,
 		AssetServer: &assetserver.Options{
 			Assets: assets,
 		},
