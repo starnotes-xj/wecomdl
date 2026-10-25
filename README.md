@@ -166,3 +166,4 @@ wecomdl --url "https://example.com/video.mp4" --ffmpeg "D:\Tools\ffmpeg\bin\ffmp
 - 不要把广告 MP4 当成回放视频，广告路径里常见 `ads_svp_video`、`snssvpdownload` 等字样。
 - 如果媒体请求返回 401/403，通常是链接或会话过期，需要重新打开回放后复制新的地址。
 - 如果内容受 DRM 保护，本工具不会也不能绕过 DRM。
+ 
